@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-deep: #070b14;
+  --bg-card: rgba(18, 26, 42, 0.72);
+  --accent: #38bdf8;
+  --accent-warm: #fb923c;
+  --muted: #94a3b8;
+  --glow: rgba(56, 189, 248, 0.35);
+}
+
+body {
+  color: #e2e8f0;
+  background: var(--bg-deep);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(
+      120deg,
+      #38bdf8 0%,
+      #a78bfa 45%,
+      #fb923c 100%
+    );
+  }
+
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(148, 163, 184, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .glow-orb {
+    filter: blur(80px);
+    opacity: 0.45;
+  }
+}
