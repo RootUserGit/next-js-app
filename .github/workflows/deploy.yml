@@ -1,0 +1,47 @@
+name: CI/CD - Deploy Static Site to S3
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    env:
+      S3_BUCKET: aws-s3-nextjs-static-site
+
+    steps:
+
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Setup Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: 22
+
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Security Scan
+      run: npm audit || true
+
+    - name: Build Project
+      run: |
+        npm run build
+
+    - name: Verify Build Output
+      run: ls -la out/
+
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+
+    - name: Deploy to S3
+      run: |
+        aws s3 sync out/ s3://$S3_BUCKET --delete
