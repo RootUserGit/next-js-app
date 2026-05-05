@@ -14,11 +14,11 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "PipelineLab | Jenkins CI/CD demo",
-    template: "%s | PipelineLab",
+    default: "CI/CD demo | Jenkins/GitHub Actions",
+    template: "%s | CI/CD demo | Jenkins/GitHub Actions",
   },
   description:
-    "Learn CI/CD concepts and typical Jenkins pipeline stages with an animated Next.js static site.",
+    "Learn CI/CD concepts and typical Jenkins pipeline stages with an animated Next.js static site. Jenkins/GitHub Actions.",
 };
 
 export default function RootLayout({
