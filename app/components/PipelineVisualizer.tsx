@@ -50,7 +50,7 @@ export function PipelineVisualizer({
 
   return (
     <section
-      className="mt-14 rounded-2xl border border-white/10 bg-white/[0.03] p-5 shadow-xl ring-1 ring-white/5 backdrop-blur-md sm:p-8"
+      className="mt-14 rounded-2xl border border-slate-200/90 bg-white/80 p-5 shadow-xl ring-1 ring-slate-200/60 backdrop-blur-md dark:border-white/10 dark:bg-white/[0.03] dark:ring-white/5 sm:p-8"
       aria-labelledby={headingId}
     >
       <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
@@ -61,11 +61,11 @@ export function PipelineVisualizer({
           >
             {sectionTitle}
           </h2>
-          <p className="mt-1 text-lg font-medium text-white sm:text-xl">
+          <p className="mt-1 text-lg font-medium text-slate-900 sm:text-xl dark:text-white">
             Stages light up in order like a running build
           </p>
         </div>
-        <p className="max-w-md text-sm text-slate-400">
+        <p className="max-w-md text-sm text-slate-600 dark:text-slate-400">
           {reducedMotion
             ? "Motion is reduced on your system; stages are shown as completed for a calmer view."
             : "Each stage represents a common `stage { ... }` block in a declarative pipeline."}
@@ -91,20 +91,20 @@ export function PipelineVisualizer({
                   }`}
                 >
                   <div
-                    className={`relative flex h-14 w-14 items-center justify-center rounded-2xl border bg-slate-950/80 sm:h-16 sm:w-16 ${
+                    className={`relative flex h-14 w-14 items-center justify-center rounded-2xl border bg-white/90 sm:h-16 sm:w-16 dark:bg-slate-950/80 ${
                       isRunning
-                        ? `border-white/25 ring-2 motion-safe:animate-pulse ${toneRing[stage.tone]}`
+                        ? `border-slate-300 ring-2 motion-safe:animate-pulse dark:border-white/25 ${toneRing[stage.tone]}`
                         : isComplete
-                          ? "border-emerald-500/40 ring-1 ring-emerald-400/30"
-                          : "border-white/10 opacity-60"
+                          ? "border-emerald-500/50 ring-1 ring-emerald-400/40 dark:border-emerald-500/40 dark:ring-emerald-400/30"
+                          : "border-slate-200 opacity-80 dark:border-white/10 dark:opacity-60"
                     }`}
                   >
                     <div
-                      className={`flex h-11 w-11 items-center justify-center rounded-xl ring-1 ring-white/10 sm:h-12 sm:w-12 ${toneIconBg[stage.tone]} ${
+                      className={`flex h-11 w-11 items-center justify-center rounded-xl ring-1 ring-slate-200 dark:ring-white/10 sm:h-12 sm:w-12 ${toneIconBg[stage.tone]} ${
                         isPending ? "opacity-50" : ""
                       }`}
                     >
-                      <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-slate-900/85 sm:h-10 sm:w-10">
+                      <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-slate-800/90 sm:h-10 sm:w-10 dark:bg-slate-900/85">
                         <PipelineStageIcon id={stage.id} />
                       </div>
                     </div>
@@ -118,12 +118,12 @@ export function PipelineVisualizer({
                     ) : null}
                     {isRunning ? (
                       <span
-                        className={`pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br from-white/10 to-transparent motion-safe:animate-pipeline-shimmer`}
+                        className={`pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br from-sky-200/30 to-transparent motion-safe:animate-pipeline-shimmer dark:from-white/10`}
                         aria-hidden
                       />
                     ) : null}
                   </div>
-                  <p className="mt-3 line-clamp-2 text-[11px] font-semibold leading-snug text-white sm:text-xs">
+                  <p className="mt-3 line-clamp-2 text-[11px] font-semibold leading-snug text-slate-900 sm:text-xs dark:text-white">
                     {stage.short}
                   </p>
                   <span
@@ -139,7 +139,7 @@ export function PipelineVisualizer({
                     className="relative flex h-14 w-6 shrink-0 items-center sm:h-16 sm:w-8"
                     aria-hidden
                   >
-                    <div className="h-0.5 w-full rounded-full bg-white/10" />
+                    <div className="h-0.5 w-full rounded-full bg-slate-200 dark:bg-white/10" />
                     <div
                       className={`absolute left-0 top-1/2 h-0.5 -translate-y-1/2 rounded-full bg-gradient-to-r from-sky-400 via-violet-400 to-emerald-400 motion-safe:transition-[width] motion-safe:duration-700 ${
                         isComplete ? "w-full opacity-90" : "w-0 opacity-0"
@@ -156,9 +156,9 @@ export function PipelineVisualizer({
         </div>
       </div>
 
-      <p className="mt-6 text-center text-xs text-slate-500">
+      <p className="mt-6 text-center text-xs text-slate-500 dark:text-slate-500">
         Jenkins maps each block to Blue Ocean / Stage View; failures stop the line
-        unless you wrap steps in <code className="text-slate-400">catchError</code>{" "}
+        unless you wrap steps in <code className="text-slate-600 dark:text-slate-400">catchError</code>{" "}
         or similar.
       </p>
     </section>

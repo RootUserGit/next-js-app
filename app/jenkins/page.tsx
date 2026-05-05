@@ -60,32 +60,38 @@ export default function JenkinsPage() {
         <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-500">
           Jenkins
         </p>
-        <h1 className="mt-2 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+        <h1 className="mt-2 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl dark:text-white">
           Stages teams usually model first
         </h1>
-        <p className="mt-4 text-lg text-slate-400">
+        <p className="mt-4 text-lg text-slate-600 dark:text-slate-400">
           Declarative pipelines group work inside{" "}
-          <code className="rounded bg-white/10 px-1.5 py-0.5 font-mono text-sm text-sky-200">
+          <code className="rounded bg-slate-100 px-1.5 py-0.5 font-mono text-sm text-sky-800 dark:bg-white/10 dark:text-sky-200">
             stage
           </code>{" "}
           blocks. Each stage gets its own log section, can run on different
           agents, and appears as a column in Blue Ocean. The table below mirrors
-          the animated flow on the home and pipeline pages.
+          the animated flow on the Playbook and pipeline pages.
         </p>
         <p className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-sm text-slate-500">
-          <Link href="/pipeline" className="text-sky-400 hover:text-sky-300">
+          <Link
+            href="/pipeline"
+            className="text-sky-700 hover:text-sky-600 dark:text-sky-400 dark:hover:text-sky-300"
+          >
             Open the live animation →
           </Link>
-          <Link href="/deploy-s3" className="text-orange-300 hover:text-orange-200">
+          <Link
+            href="/deploy-s3"
+            className="text-orange-700 hover:text-orange-600 dark:text-orange-300 dark:hover:text-orange-200"
+          >
             S3 hosting + Groovy / Docker →
           </Link>
         </p>
       </header>
 
-      <div className="mt-12 overflow-x-auto rounded-2xl border border-white/10">
+      <div className="mt-12 overflow-x-auto rounded-2xl border border-slate-200/90 bg-white/80 dark:border-white/10 dark:bg-transparent">
         <table className="w-full min-w-[640px] border-collapse text-left text-sm">
           <thead>
-            <tr className="border-b border-white/10 bg-white/[0.04] text-xs uppercase tracking-wider text-slate-500">
+            <tr className="border-b border-slate-200 bg-slate-50 text-xs uppercase tracking-wider text-slate-500 dark:border-white/10 dark:bg-white/[0.04] dark:text-slate-500">
               <th className="px-4 py-3 font-medium">#</th>
               <th className="px-4 py-3 font-medium">Stage</th>
               <th className="px-4 py-3 font-medium">Typical responsibility</th>
@@ -95,9 +101,9 @@ export default function JenkinsPage() {
             {jenkinsPipelineStages.map((s, i) => (
               <tr
                 key={s.id}
-                className="border-b border-white/5 transition hover:bg-white/[0.02]"
+                className="border-b border-slate-100 transition hover:bg-slate-50 dark:border-white/5 dark:hover:bg-white/[0.02]"
               >
-                <td className="px-4 py-4 font-mono text-slate-500">
+                <td className="px-4 py-4 font-mono text-slate-500 dark:text-slate-500">
                   {String(i + 1).padStart(2, "0")}
                 </td>
                 <td className="px-4 py-4">
@@ -106,10 +112,12 @@ export default function JenkinsPage() {
                       className={`inline-block h-2 w-2 rounded-full ${toneDot[s.tone]}`}
                       aria-hidden
                     />
-                    <span className="font-medium text-white">{s.title}</span>
+                    <span className="font-medium text-slate-900 dark:text-white">
+                      {s.title}
+                    </span>
                   </div>
                 </td>
-                <td className="max-w-xl px-4 py-4 text-slate-400">
+                <td className="max-w-xl px-4 py-4 text-slate-600 dark:text-slate-400">
                   {s.summary}
                 </td>
               </tr>
@@ -120,39 +128,42 @@ export default function JenkinsPage() {
 
       <section className="mt-14 grid gap-8 lg:grid-cols-2 lg:items-start">
         <div>
-          <h2 className="text-lg font-semibold text-white">
+          <h2 className="text-lg font-semibold text-slate-900 dark:text-white">
             How this maps to a Jenkinsfile
           </h2>
-          <p className="mt-3 text-sm leading-relaxed text-slate-400">
+          <p className="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
             The snippet is intentionally minimal: your org will add Docker
             agents, credentials binding, parallel branches for integration
             tests, and deployment approvals. Notice how{" "}
-            <code className="font-mono text-sky-200">when</code> guards the
+            <code className="font-mono text-sky-800 dark:text-sky-200">when</code> guards the
             deploy stage so only mainline builds reach shared environments.
           </p>
-          <ul className="mt-5 space-y-2 text-sm text-slate-400">
+          <ul className="mt-5 space-y-2 text-sm text-slate-600 dark:text-slate-400">
             <li>
-              <strong className="text-slate-200">Checkout</strong> pins the
+              <strong className="text-slate-800 dark:text-slate-200">Checkout</strong> pins the
               workspace to the triggering commit.
             </li>
             <li>
-              <strong className="text-slate-200">Lint &amp; tests</strong> run
+              <strong className="text-slate-800 dark:text-slate-200">Lint &amp; tests</strong> run
               before you spend minutes on packaging.
             </li>
             <li>
-              <strong className="text-slate-200">post {"{ }"}</strong> is the
+              <strong className="text-slate-800 dark:text-slate-200">post {"{ }"}</strong> is the
               safety net for notifications and cleanup.
             </li>
           </ul>
         </div>
-        <pre className="max-h-[min(70vh,520px)] overflow-auto rounded-2xl border border-white/10 bg-slate-950/80 p-4 text-xs leading-relaxed text-slate-300 shadow-inner sm:text-sm">
+        <pre className="max-h-[min(70vh,520px)] overflow-auto rounded-2xl border border-slate-200 bg-slate-900 p-4 text-xs leading-relaxed text-slate-200 shadow-inner dark:border-white/10 dark:bg-slate-950/80 dark:text-slate-300 sm:text-sm">
           <code>{jenkinsfileExample}</code>
         </pre>
       </section>
 
       <p className="mt-12 text-center text-sm text-slate-500">
         New to the vocabulary?{" "}
-        <Link href="/concepts" className="text-sky-400 hover:text-sky-300">
+        <Link
+          href="/concepts"
+          className="text-sky-700 hover:text-sky-600 dark:text-sky-400 dark:hover:text-sky-300"
+        >
           Read CI/CD basics
         </Link>{" "}
         first, then revisit this table.

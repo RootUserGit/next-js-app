@@ -57,20 +57,26 @@ export default function DeployS3Page() {
         <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-500">
           Static hosting
         </p>
-        <h1 className="mt-2 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+        <h1 className="mt-2 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl dark:text-white">
           Jenkins, S3, and optional Docker for full automation
         </h1>
-        <p className="mt-4 text-lg text-slate-400">
+        <p className="mt-4 text-lg text-slate-600 dark:text-slate-400">
           Use this page as a checklist for S3 static hosting, then copy the
           Groovy that matches how your agents run: **direct Node build + sync**
           or **Docker multi-stage build**, extract the static tree, and sync the
           same way.
         </p>
         <div className="mt-6 flex flex-wrap gap-4 text-sm">
-          <Link href="/jenkins" className="text-sky-400 hover:text-sky-300">
+          <Link
+            href="/jenkins"
+            className="text-sky-700 hover:text-sky-600 dark:text-sky-400 dark:hover:text-sky-300"
+          >
             ← Pipeline stages overview
           </Link>
-          <Link href="/pipeline" className="text-violet-300 hover:text-violet-200">
+          <Link
+            href="/pipeline"
+            className="text-violet-700 hover:text-violet-600 dark:text-violet-300 dark:hover:text-violet-200"
+          >
             Live pipeline animation →
           </Link>
         </div>
@@ -79,25 +85,26 @@ export default function DeployS3Page() {
       <section className="mt-14" aria-labelledby="prereq-heading">
         <h2
           id="prereq-heading"
-          className="text-xl font-semibold text-white sm:text-2xl"
+          className="text-xl font-semibold text-slate-900 sm:text-2xl dark:text-white"
         >
           Prerequisites for S3 static site hosting
         </h2>
-        <p className="mt-3 max-w-3xl text-sm text-slate-400 sm:text-base">
+        <p className="mt-3 max-w-3xl text-sm text-slate-600 sm:text-base dark:text-slate-400">
           These are the same decisions you would encode in Terraform or the
-          AWS console before the first successful <code className="text-sky-200">aws s3 sync</code> from
+          AWS console before the first successful{" "}
+          <code className="text-sky-800 dark:text-sky-200">aws s3 sync</code> from
           Jenkins.
         </p>
         <div className="mt-8 grid gap-6 sm:grid-cols-2">
           {prerequisites.map((block) => (
             <article
               key={block.title}
-              className="rounded-2xl border border-white/10 bg-white/[0.03] p-6"
+              className="rounded-2xl border border-slate-200/90 bg-white/80 p-6 shadow-sm dark:border-white/10 dark:bg-white/[0.03] dark:shadow-none"
             >
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-sky-300">
+              <h3 className="text-sm font-semibold uppercase tracking-wider text-sky-700 dark:text-sky-300">
                 {block.title}
               </h3>
-              <ul className="mt-4 list-disc space-y-2 pl-4 text-sm text-slate-400">
+              <ul className="mt-4 list-disc space-y-2 pl-4 text-sm text-slate-600 dark:text-slate-400">
                 {block.items.map((item, i) => (
                   <li key={`${block.title}-${i}`}>{item}</li>
                 ))}
@@ -110,13 +117,13 @@ export default function DeployS3Page() {
       <section className="mt-16" aria-labelledby="recipes-heading">
         <h2
           id="recipes-heading"
-          className="text-xl font-semibold text-white sm:text-2xl"
+          className="text-xl font-semibold text-slate-900 sm:text-2xl dark:text-white"
         >
           Jenkins Groovy &amp; Dockerfile recipes
         </h2>
-        <p className="mt-3 max-w-3xl text-sm text-slate-400">
+        <p className="mt-3 max-w-3xl text-sm text-slate-600 dark:text-slate-400">
           Toggle between a **lightweight** path (Node on the agent, sync{" "}
-          <code className="text-slate-300">out/</code>) and a **container-first**
+          <code className="text-slate-800 dark:text-slate-300">out/</code>) and a **container-first**
           path (reproducible build image, extract static files, then the same S3
           sync). Both end at the same S3 bucket for a static Next export.
         </p>
@@ -126,64 +133,64 @@ export default function DeployS3Page() {
       </section>
 
       <section
-        className="mt-16 rounded-2xl border border-dashed border-orange-400/30 bg-orange-500/[0.06] p-6 sm:p-8"
+        className="mt-16 rounded-2xl border border-dashed border-orange-300 bg-orange-50/80 p-6 dark:border-orange-400/30 dark:bg-orange-500/[0.06] sm:p-8"
         aria-labelledby="e2e-heading"
       >
         <h2
           id="e2e-heading"
-          className="text-lg font-semibold text-white sm:text-xl"
+          className="text-lg font-semibold text-slate-900 sm:text-xl dark:text-white"
         >
           End-to-end automation (Git → Jenkins → S3 → browser)
         </h2>
-        <ol className="mt-6 list-decimal space-y-3 pl-5 text-sm text-slate-300 sm:text-base">
+        <ol className="mt-6 list-decimal space-y-3 pl-5 text-sm text-slate-700 sm:text-base dark:text-slate-300">
           {e2eSteps.map((step, i) => (
             <li key={i} className="leading-relaxed">
               {step}
             </li>
           ))}
         </ol>
-        <p className="mt-6 text-sm text-slate-500">
+        <p className="mt-6 text-sm text-slate-600 dark:text-slate-500">
           Same story if you swap S3 for another object store: the contract is an
           immutable directory of static files produced by the build stage and
           verified before promotion.
         </p>
       </section>
 
-      <section className="mt-12 rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8">
-        <h2 className="text-lg font-semibold text-white">
+      <section className="mt-12 rounded-2xl border border-slate-200/90 bg-white/80 p-6 dark:border-white/10 dark:bg-white/[0.02] sm:p-8">
+        <h2 className="text-lg font-semibold text-slate-900 dark:text-white">
           Dockerfile optimization checklist
         </h2>
-        <ul className="mt-4 grid gap-3 text-sm text-slate-400 sm:grid-cols-2">
+        <ul className="mt-4 grid gap-3 text-sm text-slate-600 sm:grid-cols-2 dark:text-slate-400">
           <li className="flex gap-2">
-            <span className="text-emerald-400">✓</span>
+            <span className="text-emerald-600 dark:text-emerald-400">✓</span>
             <span>
-              <strong className="text-slate-200">Order COPY lines</strong> from
+              <strong className="text-slate-800 dark:text-slate-200">Order COPY lines</strong> from
               least to most frequently changed so layer cache hits stay high.
             </span>
           </li>
           <li className="flex gap-2">
-            <span className="text-emerald-400">✓</span>
+            <span className="text-emerald-600 dark:text-emerald-400">✓</span>
             <span>
-              <strong className="text-slate-200">Use npm ci</strong> in CI-style
-              images (not <code className="text-slate-300">npm install</code>)
-              when <code className="text-slate-300">package-lock.json</code> is
+              <strong className="text-slate-800 dark:text-slate-200">Use npm ci</strong> in CI-style
+              images (not <code className="text-slate-800 dark:text-slate-300">npm install</code>)
+              when <code className="text-slate-800 dark:text-slate-300">package-lock.json</code> is
               committed.
             </span>
           </li>
           <li className="flex gap-2">
-            <span className="text-emerald-400">✓</span>
+            <span className="text-emerald-600 dark:text-emerald-400">✓</span>
             <span>
-              <strong className="text-slate-200">Slim base images</strong>{" "}
-              (<code className="text-slate-300">bookworm-slim</code>,{" "}
-              <code className="text-slate-300">alpine</code> on export) shrink
+              <strong className="text-slate-800 dark:text-slate-200">Slim base images</strong>{" "}
+              (<code className="text-slate-800 dark:text-slate-300">bookworm-slim</code>,{" "}
+              <code className="text-slate-800 dark:text-slate-300">alpine</code> on export) shrink
               attack surface and pull time.
             </span>
           </li>
           <li className="flex gap-2">
-            <span className="text-emerald-400">✓</span>
+            <span className="text-emerald-600 dark:text-emerald-400">✓</span>
             <span>
-              <strong className="text-slate-200">BuildKit cache mounts</strong>{" "}
-              (optional) for <code className="text-slate-300">npm ci</code> on
+              <strong className="text-slate-800 dark:text-slate-200">BuildKit cache mounts</strong>{" "}
+              (optional) for <code className="text-slate-800 dark:text-slate-300">npm ci</code> on
               large monorepos — enable on the Jenkins Docker daemon when ready.
             </span>
           </li>

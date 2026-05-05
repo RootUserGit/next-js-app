@@ -54,10 +54,10 @@ export default function ConceptsPage() {
         <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-500">
           Foundations
         </p>
-        <h1 className="mt-2 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+        <h1 className="mt-2 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl dark:text-white">
           CI/CD basics in one pass
         </h1>
-        <p className="mt-4 text-lg text-slate-400">
+        <p className="mt-4 text-lg text-slate-600 dark:text-slate-400">
           Use this page as a shared vocabulary before you read Jenkinsfiles or
           watch Blue Ocean stage graphs. Each idea below maps cleanly to blocks
           you will declare in code.
@@ -65,13 +65,13 @@ export default function ConceptsPage() {
         <div className="mt-6 flex flex-wrap gap-3">
           <Link
             href="/jenkins"
-            className="text-sm font-medium text-sky-300 hover:text-sky-200"
+            className="text-sm font-medium text-sky-700 hover:text-sky-600 dark:text-sky-300 dark:hover:text-sky-200"
           >
             Jenkins stages →
           </Link>
           <Link
             href="/pipeline"
-            className="text-sm font-medium text-violet-300 hover:text-violet-200"
+            className="text-sm font-medium text-violet-700 hover:text-violet-600 dark:text-violet-300 dark:hover:text-violet-200"
           >
             Animated pipeline →
           </Link>
@@ -82,7 +82,7 @@ export default function ConceptsPage() {
         {sections.map((section, i) => (
           <article
             key={section.id}
-            className="relative scroll-mt-24 rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8"
+            className="relative scroll-mt-24 rounded-2xl border border-slate-200/90 bg-white/80 p-6 shadow-sm dark:border-white/10 dark:bg-white/[0.02] dark:shadow-none sm:p-8"
             id={section.id}
           >
             <span className="absolute -left-px top-8 hidden h-12 w-1 rounded-full bg-gradient-to-b from-sky-400 to-violet-500 sm:block" />
@@ -90,11 +90,11 @@ export default function ConceptsPage() {
               <span className="font-mono text-xs text-slate-500">
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <h2 className="text-xl font-semibold text-white">
+              <h2 className="text-xl font-semibold text-slate-900 dark:text-white">
                 {section.title}
               </h2>
             </div>
-            <div className="mt-4 space-y-3 text-sm leading-relaxed text-slate-400 sm:text-base">
+            <div className="mt-4 space-y-3 text-sm leading-relaxed text-slate-600 sm:text-base dark:text-slate-400">
               {section.body.map((p, j) => (
                 <p key={`${section.id}-${j}`}>{p}</p>
               ))}
@@ -103,33 +103,43 @@ export default function ConceptsPage() {
         ))}
       </div>
 
-      <section className="mt-16 rounded-2xl border border-dashed border-white/15 bg-slate-950/40 p-6 sm:p-8">
-        <h2 className="text-lg font-semibold text-white">Quick glossary</h2>
+      <section className="mt-16 rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-6 dark:border-white/15 dark:bg-slate-950/40 sm:p-8">
+        <h2 className="text-lg font-semibold text-slate-900 dark:text-white">
+          Quick glossary
+        </h2>
         <dl className="mt-6 grid gap-6 sm:grid-cols-2">
           <div>
-            <dt className="font-mono text-sm text-sky-300">Artifact</dt>
-            <dd className="mt-1 text-sm text-slate-400">
+            <dt className="font-mono text-sm text-sky-700 dark:text-sky-300">
+              Artifact
+            </dt>
+            <dd className="mt-1 text-sm text-slate-600 dark:text-slate-400">
               The immutable output of a build stage—a Docker image digest, npm
               tarball, or static `out/` folder you promote downstream.
             </dd>
           </div>
           <div>
-            <dt className="font-mono text-sm text-sky-300">Quality gate</dt>
-            <dd className="mt-1 text-sm text-slate-400">
+            <dt className="font-mono text-sm text-sky-700 dark:text-sky-300">
+              Quality gate
+            </dt>
+            <dd className="mt-1 text-sm text-slate-600 dark:text-slate-400">
               A mandatory check (coverage threshold, CVE budget, performance
               budget) that must pass before later stages unlock.
             </dd>
           </div>
           <div>
-            <dt className="font-mono text-sm text-sky-300">Feedback loop</dt>
-            <dd className="mt-1 text-sm text-slate-400">
+            <dt className="font-mono text-sm text-sky-700 dark:text-sky-300">
+              Feedback loop
+            </dt>
+            <dd className="mt-1 text-sm text-slate-600 dark:text-slate-400">
               Time from commit to signal. CI/CD investments usually target
               shortening this loop while keeping risk flat or lower.
             </dd>
           </div>
           <div>
-            <dt className="font-mono text-sm text-sky-300">Post actions</dt>
-            <dd className="mt-1 text-sm text-slate-400">
+            <dt className="font-mono text-sm text-sky-700 dark:text-sky-300">
+              Post actions
+            </dt>
+            <dd className="mt-1 text-sm text-slate-600 dark:text-slate-400">
               Hooks that always run—notify chat, archive logs, tear down
               ephemeral environments—often modeled with Jenkins `post { }`.
             </dd>
